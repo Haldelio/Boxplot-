@@ -1,0 +1,45 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Mengimpor data dari file CSV
+data = pd.read_csv('data2022.csv')
+
+from numpy import median
+# Membuat boxplot
+plt.figure(figsize=(8, 6))  # Menentukan ukuran plot
+# Menggunakan fungsi boxplot dari pandas dan mengatur warna
+boxplot = data.boxplot(color='red')
+# Menggunakan fungsi boxplot dari pandas
+data.boxplot()
+# Menggunakan fungsi boxplot dari pandas dan mengatur warna Whisker
+boxplot = data.boxplot(whiskerprops={'color': 'black'})
+# Mengatur warna outlier
+outlier_color=('red')
+# Memberi label sumbu x
+plt.xlabel('Month')
+# Memberi label sumbu y
+plt.ylabel('Displacement (cm)')
+# Mengatur interval nilai pada sumbu y
+plt.ylim(-4, 4)  # Misalnya, mengatur interval dari -2 hingga 2
+
+# Mengatur interval garis grid di dalam boxplot
+plt.gca().yaxis.grid(True, which='major', linestyle='--', color='gray', alpha=0.5)
+
+# Mengatur interval label pada sumbu x
+plt.xticks(range(0, len(data.columns), 1), rotation=25, ha='right')
+
+# Menghilangkan garis pada sumbu y
+#plt.gca().spines['left'].set_visible(False)    #hapus tanda pagar untuk menjalankan skrip
+#plt.gca().spines['right'].set_visible(False)
+
+# Menghilangkan grid pada sumbu y
+plt.gca().yaxis.grid(False)
+
+# Menghilangkan grid pada sumbu x
+plt.gca().xaxis.grid(False)
+
+# Memberi judul plot
+plt.title('Deformation 2022')
+
+# Menampilkan boxplot
+plt.show()
